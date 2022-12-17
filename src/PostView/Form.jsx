@@ -1,9 +1,9 @@
 import React from 'react'
 import { useState } from 'react'
 import './Form.css'
-// import axios from "axios";
+ import axios from "axios";
 
-// const apiURL = "https://instaclone-backend-rndh.onrender.com/post";
+const apiURL = "https://insta-backend-x8sn.onrender.com/post";
 function Form({ setForm, postAdded }) {
     let [formData, setFormData] = useState({ name: '', location: '', description: '' })
     let [file, setFile] = useState(null);
@@ -48,15 +48,15 @@ function Form({ setForm, postAdded }) {
         formDat.append('name', formData.name);
         formDat.append('location', formData.location);
         formDat.append('description', formData.description);
-        try {
-            // const response = await axios({
-            //     method: "post",
-            //     url: apiURL,
-            //     data: formDat,
-            //     headers: { "Content-Type": "multipart/form-data" },
-            // });
-            // postAdded(prev => prev + 1)
-            // console.log(response);
+         try {
+             const response = await axios.post({
+                 method: "post",
+                 url: apiURL,
+                 data: formDat,
+                 headers: { "Content-Type": "multipart/form-data" },
+             });
+             postAdded(prev => prev + 1)
+             console.log(response);
         } catch (error) {
             console.log(error)
         }
